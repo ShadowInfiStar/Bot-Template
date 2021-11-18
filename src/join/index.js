@@ -23,7 +23,7 @@ module.exports = async (api, command)=>{
     }
 
 
-    const args = command.argument.split(/[,،]/g);
+    const args = command.argument.split(/[,،\s]/g);
 
     if(validator.isValidNumber(args[0])&&!validator.isLessThanOrEqualZero(args[0])) {
         const result = await api.group().joinById(parseInt(args[0]), args[1]);
