@@ -24,7 +24,7 @@ module.exports = async (api, command) => {
 
     //#region Check to see if a user has many (returns true apon 1 located)
     else if(await api.utility().subscriber().privilege().has(command.sourceSubscriberId, multiplePrivileges)){
-        const privilege = multiplePrivileges.find((priv)=> await api.utility().privilege().has(command.sourceSubscriberId, priv));
+        const privilege = await multiplePrivileges.find((priv)=> await api.utility().privilege().has(command.sourceSubscriberId, priv));
         return await api.messaging().sendGroupMessage(command.targetGroupId, 
             api.utility().string().replace(api.phrase().getByLanguageAndName(command.language, `${api.config.keyword}_has_privilege_${privilege.toString()}_message`),
             {
